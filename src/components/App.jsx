@@ -3,6 +3,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import CreateArea from "./CreateArea";
 import NotesList from "./NotesList";
+import { CircularProgress } from "@mui/material";
 import { v4 as uuidv4 } from 'uuid';
 
 function App() {
@@ -76,7 +77,7 @@ function App() {
   if(error)
   content = <p style={textAlign}>{error}</p>
   if(loading)
-  content = <p style={textAlign}>loading...</p>
+  content = <CircularProgress style={{margin: '0 auto',display: 'block',color: 'yellow'}}/>
 
   return (
     <div>
