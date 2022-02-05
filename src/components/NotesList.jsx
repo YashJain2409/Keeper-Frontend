@@ -6,8 +6,8 @@ function NotesList(props) {
     return<div>{notes.map((noteItem) => {
         return (
           <Note
-            key={noteItem.noteId}
-            id={noteItem.noteId}
+            key={noteItem._id}
+            id={noteItem._id}
             title={noteItem.title}
             content={noteItem.content}
             onDelete={props.deleteNote}
