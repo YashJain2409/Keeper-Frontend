@@ -17,7 +17,7 @@ function App() {
   const fetchNotes = useCallback(() => {
     setLoading(true);
     setError(null);
-    fetch(process.env.REACT_APP_BACKEND_URL +  "/notes/fetch", {
+    fetch(process.env.REACT_APP_BACKEND_URL +  "/notes", {
       method: "GET",
       headers: {
         "auth-token": authctx.token,
