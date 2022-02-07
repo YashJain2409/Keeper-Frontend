@@ -17,7 +17,7 @@ function App() {
   const fetchNotes = useCallback(() => {
     setLoading(true);
     setError(null);
-    fetch("/notes/fetch", {
+    fetch(process.env.REACT_APP_BACKEND_URL +  "/notes/fetch", {
       method: "GET",
       headers: {
         "auth-token": authctx.token,
@@ -32,7 +32,9 @@ function App() {
       })
       .then((data) => {
         setNotes(data);
-        setLoading(false);
+        setTimeout(function () {
+          setLoading(false);
+        }, 500);
       })
       .catch((error) => {
         setError(error.message);
@@ -48,7 +50,7 @@ function App() {
       ...newNote,
       id: uuidv4(),
     };
-    fetch("/notes/add", {
+    fetch(process.env.REACT_APP_BACKEND_URL +  "/notes/add", {
       method: "POST",
       body: JSON.stringify(obj),
       headers: {
@@ -57,26 +59,36 @@ function App() {
       },
     })
       .then((response) => {
-        console.log("successfully fetched");
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        fetchNotes();
       })
       .catch((error) => {
         setError(error.message);
       });
-    fetchNotes();
   }
 
   function deleteNote(id) {
-    fetch("/notes/delete", {
+    fetch(process.env.REACT_APP_BACKEND_URL +  "/notes/delete", {
       method: "DELETE",
       body: JSON.stringify({ id: id }),
       headers: {
         "auth-token": authctx.token,
         "Content-Type": "application/json",
       },
-    }).then((response) => {
-      console.log("successfully deleted");
-    });
-    fetchNotes();
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        fetchNotes();
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
   }
   const textAlign = {
     textAlign: "center",

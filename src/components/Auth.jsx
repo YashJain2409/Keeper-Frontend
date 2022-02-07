@@ -12,8 +12,8 @@ function Login() {
   function formSubmitHandler(event) {
     setIsSubmitted(true);
     let url;
-    if (login) url = "/login";
-    else url = "/register";
+    if (login) url = process.env.REACT_APP_BACKEND_URL + "/login";
+    else url =   process.env.REACT_APP_BACKEND_URL +  "/register";
     event.preventDefault();
     const obj = {
       email: event.target[0].value,
@@ -85,6 +85,7 @@ function Login() {
             className="form-control"
             id="InputEmail"
             aria-describedby="emailHelp"
+            required
           />
         </div>
         <div className="form-group">
@@ -94,6 +95,7 @@ function Login() {
             className="form-control"
             id="InputPassword"
             minLength="7"
+            required
           />
         </div>
         {!isSubmitted ? (
