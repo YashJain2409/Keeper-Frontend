@@ -3,8 +3,8 @@ import AddIcon from "@mui/icons-material/Add";
 import Fab from "@mui/material/Fab";
 import Zoom from "@mui/material/Zoom";
 
-
 function CreateArea(props) {
+  const [valid,setValid] = useState(true);
   const [vis, setVis] = useState(false);
   const [note, setNote] = useState({
     title: "",
@@ -23,6 +23,13 @@ function CreateArea(props) {
   }
 
   function submitNote() {
+    if (note.title === "" || note.content === "") {
+      setValid(false);
+      setTimeout(() => {
+        setValid(true);
+      },1000);
+      return;
+    }
     props.onAdd(note);
     setNote({
       title: "",
@@ -57,6 +64,7 @@ function CreateArea(props) {
             <AddIcon />
           </Fab>
         </Zoom>
+        {!valid && <p style={{color: 'red'}}>please add some data , some fields are empty.</p>}
       </form>
     </div>
   );
