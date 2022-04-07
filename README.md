@@ -36,5 +36,6 @@ Start the server
 ## built with
 * [react](https://reactjs.org/)
 ## Screenshots
-
-## will be uploaded soon ##
+<img src = "public/images/Readme/note_app_3.PNG" />
+<img src = "public/images/Readme/note_app_2.PNG" />
+<img src = "public/images/Readme/note_app_1.PNG" />
